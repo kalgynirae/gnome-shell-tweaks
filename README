@@ -1,0 +1,8 @@
+This extension should, when it is finished, display a status icon on the
+shell panel that indicates how many unread instant messages you have.
+Pidgin is the only supported IM client.
+
+Currently, the author is trying to grasp the general concepts of
+extending GNOME Shell. Consequently, this extension does not yet exhibit
+any useful functionality and is instead more of a proof-of-concept of
+Shell extensions in general.
