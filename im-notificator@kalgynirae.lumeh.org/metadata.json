@@ -1,1 +1,7 @@
-{"shell-version": ["3.4.1"], "uuid": "im-notificator@kalgynirae.lumeh.org", "name": "IM Notificator", "description": "Show the number of unread instant messages on the shell panel"}
+{
+    "shell-version": ["3.4.1"],
+    "uuid": "im-notificator@kalgynirae.lumeh.org",
+    "name": "IM Notificator",
+    "description": "Show the number of unread instant messages on the shell panel (currently works with Pidgin)",
+    "url": "https://github.com/kalgynirae/im-notificator"
+}

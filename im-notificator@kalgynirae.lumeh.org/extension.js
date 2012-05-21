@@ -1,9 +1,11 @@
 
 const St = imports.gi.St;
 const Main = imports.ui.main;
+const PanelMenu = imports.ui.panelMenu;
+const PopupMenu = imports.ui.popupMenu;
 const Tweener = imports.ui.tweener;
 
-let text, button;
+let text;
 
 function _hideHello() {
     Main.uiGroup.remove_actor(text);
@@ -31,24 +33,30 @@ function _showHello() {
 }
 
 function init() {
-    button = new St.Bin({ style_class: 'panel-button',
-                          reactive: true,
-                          can_focus: true,
-                          x_fill: true,
-                          y_fill: false,
-                          track_hover: true });
-    let icon = new St.Icon({ icon_name: 'system-run',
-                             icon_type: St.IconType.SYMBOLIC,
-                             style_class: 'system-status-icon' });
-
-    button.set_child(icon);
-    button.connect('button-press-event', _showHello);
 }
 
 function enable() {
-    Main.panel._rightBox.insert_child_at_index(button, 0);
+    notificatorMenu = new NotificatorMenu();
+    Main.panel.addToStatusArea('notificator-menu', notificatorMenu);
 }
 
 function disable() {
-    Main.panel._rightBox.remove_child(button);
+    notificatorMenu.destroy();
 }
+
+function NotificatorMenu() {
+    this._init.apply(this, arguments);
+}
+
+NotificatorMenu.prototype = {
+    __proto__: PanelMenu.SystemStatusButton.prototype,
+
+    _init: function() {
+        PanelMenu.SystemStatusButton.prototype._init.call(this, 'printer-printing-symbolic');
+
+        // Add a menu item
+        this._testmenuitem = new PopupMenu.PopupMenuItem("Display message");
+        this.menu.addMenuItem(this._testmenuitem);
+        this._testmenuitem.connect('activate', _showHello);
+    },
+};
