@@ -1,62 +1,60 @@
 
 const St = imports.gi.St;
+
 const Main = imports.ui.main;
 const PanelMenu = imports.ui.panelMenu;
 const PopupMenu = imports.ui.popupMenu;
 const Tweener = imports.ui.tweener;
 
-let text;
-
-function _hideHello() {
-    Main.uiGroup.remove_actor(text);
-    text = null;
-}
-
-function _showHello() {
-    if (!text) {
-        text = new St.Label({ style_class: 'helloworld-label', text: "Hello, world!" });
-        Main.uiGroup.add_actor(text);
-    }
-
-    text.opacity = 255;
-
-    let monitor = Main.layoutManager.primaryMonitor;
-
-    text.set_position(Math.floor(monitor.width / 2 - text.width / 2),
-                      Math.floor(monitor.height / 2 - text.height / 2));
-
-    Tweener.addTween(text,
-                     { opacity: 0,
-                       time: 2,
-                       transition: 'easeOutQuad',
-                       onComplete: _hideHello });
+function incrementMessageCount() {
+    notificator.setMessageCount(notificator._messageCount + 1);
 }
 
 function init() {
 }
 
 function enable() {
-    notificatorMenu = new NotificatorMenu();
-    Main.panel.addToStatusArea('notificator-menu', notificatorMenu);
+    notificator = new Notificator();
+    Main.panel.addToStatusArea('im-notificator', notificator);
+
+    // For testing
+    notificator.setMessageCount(2);
+    notificator.addConversation('John Smith', 2, incrementMessageCount);
 }
 
 function disable() {
-    notificatorMenu.destroy();
+    notificator.destroy();
 }
 
-function NotificatorMenu() {
+function Notificator() {
     this._init.apply(this, arguments);
 }
 
-NotificatorMenu.prototype = {
-    __proto__: PanelMenu.SystemStatusButton.prototype,
+Notificator.prototype = {
+    __proto__: PanelMenu.Button.prototype,
 
     _init: function() {
-        PanelMenu.SystemStatusButton.prototype._init.call(this, 'printer-printing-symbolic');
+        PanelMenu.Button.prototype._init.call(this, 0.0, 'im-notificator');
 
-        // Add a menu item
-        this._testmenuitem = new PopupMenu.PopupMenuItem("Display message");
-        this.menu.addMenuItem(this._testmenuitem);
-        this._testmenuitem.connect('activate', _showHello);
+        // Set up like PanelMenu.SystemStatusButton except with a label
+        // instead of an icon
+        this._notificatorLabel = new St.Label({style_class: 'im-notificator-label'});
+        this.actor.add_actor(this._notificatorLabel);
+        this.actor.add_style_class_name('panel-status-button');
+
+        // Initialize the message count
+        this._messageCount = 0;
+    },
+
+    addConversation: function(name, messageCount, callback) {
+        let title = name + " (" + messageCount.toString() + ")";
+        let menuItem = new PopupMenu.PopupMenuItem(title);
+        menuItem.connect('activate', callback);
+        this.menu.addMenuItem(menuItem);
+    },
+
+    setMessageCount: function(count) {
+        this._messageCount = count;
+        this._notificatorLabel.set_text(this._messageCount.toString());
     },
 };
