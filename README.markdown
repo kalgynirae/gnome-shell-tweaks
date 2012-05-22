@@ -14,8 +14,8 @@ Installation
 ------------
 1. Clone the repository and create a symlink in the extensions folder.
 
-    ln -s im-notificator@kalgynirae.lumeh.org \
-    ~/.local/share/gnome-shell/extensions/im-notificator@kalgynirae.lumeh.org
+       ln -s im-notificator@kalgynirae.lumeh.org \
+       ~/.local/share/gnome-shell/extensions/im-notificator@kalgynirae.lumeh.org
 
 2. Restart gnome-shell by pressing Alt+F2 and typing `r`.
 
