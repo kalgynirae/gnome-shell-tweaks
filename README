@@ -1,8 +1,11 @@
-This extension should, when it is finished, display a status icon on the
-shell panel that indicates how many unread instant messages you have.
-Pidgin is the only supported IM client.
+This extension displays the number of active Pidgin conversations on a
+small icon in the panel status area. Clicking the icon presents a menu
+which lists the conversations. When a conversation receives a new
+message, the icon will change to a shade of red until you interact with
+the conversation.
 
-Currently, the author is trying to grasp the general concepts of
-extending GNOME Shell. Consequently, this extension does not yet exhibit
-any useful functionality and is instead more of a proof-of-concept of
-Shell extensions in general.
+For best results, change your Pidgin preferences so "Hide new
+conversation windows" is set to "Always".
+
+The extension may be buggy due to the unpredictablility of some of
+Pidgin's DBus signals.
