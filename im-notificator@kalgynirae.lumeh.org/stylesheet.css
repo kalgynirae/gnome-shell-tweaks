@@ -1,3 +1,11 @@
+.debug-label {
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
+  background-color: black;
+  border-radius: 5px;
+  padding: .5em;
+}
 .im-notificator-label {
   background-color: #404040;
   border-radius: 3px;
