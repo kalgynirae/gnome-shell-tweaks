@@ -1,3 +1,8 @@
+This is my collection of small custom gnome-shell extensions.
+
+im-notificator
+==============
+
 This extension displays the number of active Pidgin conversations on a
 small icon in the panel status area. Clicking the icon presents a menu
 which lists the conversations. When a conversation receives a new
