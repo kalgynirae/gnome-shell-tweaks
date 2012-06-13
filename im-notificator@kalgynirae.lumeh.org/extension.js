@@ -1,6 +1,6 @@
 /**
  * im-notificator, a gnome-shell extension that shows Pidgin conversations
- * https://github.com/kalgynirae/im-notificator
+ * https://github.com/kalgynirae/gnome-shell-tweaks
  * Copyright 2012 Colin Chan
  *
  * This program is free software: you can redistribute it and/or modify
@@ -65,6 +65,8 @@ const PidginInterface = {
     ],
 };
 let PidginProxy = DBus.makeProxyClass(PidginInterface);
+
+let notificator = null;
 
 function Notificator() {
     this._init.apply(this, arguments);
