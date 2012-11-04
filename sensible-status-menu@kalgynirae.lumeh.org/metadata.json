@@ -1,5 +1,5 @@
 {
-    "shell-version": ["3.4.1", "3.4.2"],
+    "shell-version": ["3.4.1", "3.4.2", "3.6.1"],
     "uuid": "sensible-status-menu@kalgynirae.lumeh.org",
     "name": "Sensible Status Menu",
     "description": "Show separate 'Suspend', 'Reboot', and 'Power Off' menu items",
