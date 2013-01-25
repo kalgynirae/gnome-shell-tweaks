@@ -1,5 +1,11 @@
 This is my collection of small custom gnome-shell extensions.
 
+Unmaintained!!
+==============
+
+These extensions are currently unmaintained, and they don't work with
+current versions of GNOME shell.
+
 im-notificator
 ==============
 
